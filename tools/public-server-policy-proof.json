@@ -1,0 +1,12 @@
+{
+  "repository": "Minecraft-Java-Edition",
+  "revision": "0732f42c15899fff95cc9f7f1d3a8f3b19c87999",
+  "status": "PASS",
+  "policy": "steam-only-automatic-server-list-v1",
+  "reviewedInventorySha256": "c830339d831b7cd94411a832c6dee60ee55cdfbcedc50eefe8fae076c2ba8bd0",
+  "files": 9,
+  "textFilesChecked": 4,
+  "personalServerListsModified": false,
+  "checks": "Five common regression tests passed; full reviewed text inventory checked against published SHA; no new gameplay run.",
+  "payloadChanges": []
+}
