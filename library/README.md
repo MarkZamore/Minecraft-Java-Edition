@@ -1,6 +1,6 @@
 # Метаданные библиотеки
 
-Карточка продолжает стабильный ID `minecraft-26-2`; имя и `relativePath` обновлены до `Minecraft 26.3`. Это одна обновляемая сборка, а не новая независимая карточка.
+Карточка сохраняет стабильный ID `minecraft-26-2`. Отображаемое имя и путь установки `relativePath` совпадают с `Minecraft Java Edition`.
 
 `emi` указывает на [EMI Unofficial Port (Unstable)](https://www.curseforge.com/minecraft/mc-mods/emi-unofficial-port-unstable). Поставляется JAR автора этого порта, поэтому страница исходного EMI другого проекта не подставляется вместо него. Автор link-fgfgui, точные CurseForge files 8616659 → 9242955 и старый/новый SHA-256 проверены при подготовке обновления; см. [протокол](../tools/UPGRADE-26.3.md). Новый файл для Minecraft 26.3 имеет канал Alpha, как и прежний порт для 26.2.
 

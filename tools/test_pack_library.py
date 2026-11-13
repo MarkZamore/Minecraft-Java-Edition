@@ -67,7 +67,7 @@ class LibraryPublisherTests(unittest.TestCase):
         self.assertEqual(set(CURRENT_MODS), {mod_id for row in locked["files"] for mod_id in row["modIds"]})
         self.assertEqual("revision-one", data["revision"])
         self.assertEqual("minecraft-26-2", data["id"])
-        self.assertEqual("Minecraft 26.3", data["relativePath"])
+        self.assertEqual("Minecraft Java Edition", data["relativePath"])
         self.assertEqual(self.content["name"], data["name"])
 
     def test_bundle_is_deterministic_and_tampering_fails_verification(self):
