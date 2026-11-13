@@ -49,7 +49,7 @@ class UpgradeManifestTests(unittest.TestCase):
         # Preserve every real migration: EMI 26.2, the retired World Menu and
         # Pause Actions 1.0.0. The generic active/legacy guard is shared by all.
         retired = json.loads((pathlib.Path(__file__).parent / "legacy-files.json").read_text(encoding="utf-8"))["files"]
-        self.assertEqual(3, len(retired))
+        self.assertEqual(4, len(retired))
         for legacy in retired:
             with self.subTest(path=legacy["path"]):
                 self.write_lock("legacy-files.json", {"files": [legacy]})

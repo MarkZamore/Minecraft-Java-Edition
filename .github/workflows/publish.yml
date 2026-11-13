@@ -39,9 +39,9 @@ jobs:
       - name: Verify native pause actions
         run: |
           mkdir -p "$RUNNER_TEMP/pause-actions"
-          python -B tools/pause-actions/build.py --output "$RUNNER_TEMP/pause-actions/lanmc-pause-actions-1.0.1.jar"
-          cmp mods/lanmc-pause-actions-1.0.1.jar "$RUNNER_TEMP/pause-actions/lanmc-pause-actions-1.0.1.jar"
-          python -B tools/pause-actions/verify_native.py --jar mods/lanmc-pause-actions-1.0.1.jar
+          python -B tools/pause-actions/build.py --output "$RUNNER_TEMP/pause-actions/lanmc-pause-actions-1.0.2.jar"
+          cmp mods/lanmc-pause-actions-1.0.2.jar "$RUNNER_TEMP/pause-actions/lanmc-pause-actions-1.0.2.jar"
+          python -B tools/pause-actions/verify_native.py --jar mods/lanmc-pause-actions-1.0.2.jar
 
       - name: Check the controls preset
         if: ${{ hashFiles('launcher/controls-preset.txt') != '' }}

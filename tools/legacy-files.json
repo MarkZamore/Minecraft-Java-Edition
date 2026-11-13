@@ -15,6 +15,11 @@
       "path": "mods/lanmc-pause-actions-1.0.0.jar",
       "sizeBytes": 11473,
       "sha256": "74ae31bb88c6e486f40dd5ee2ab17ac8af5edd672a7c87a2094f3c37ed2614c8"
+    },
+    {
+      "path": "mods/lanmc-pause-actions-1.0.1.jar",
+      "sizeBytes": 14405,
+      "sha256": "c77a9ad6fe4506dffd50853d41210c972e0b53437357ac2afa6bad5d74313f6c"
     }
   ]
 }

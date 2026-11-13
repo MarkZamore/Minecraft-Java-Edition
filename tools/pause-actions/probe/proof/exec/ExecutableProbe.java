@@ -1,5 +1,6 @@
 package proof.exec;
 
+import java.io.File;
 import java.lang.reflect.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
@@ -18,6 +19,7 @@ import net.minecraft.client.gui.screens.*;
 import net.minecraft.client.gui.screens.social.SocialInteractionsScreen;
 import net.minecraft.client.input.KeyEvent;
 import net.minecraft.client.multiplayer.*;
+import net.minecraft.client.server.IntegratedPlayerList;
 import net.minecraft.client.server.IntegratedServer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.contents.TranslatableContents;
@@ -25,6 +27,10 @@ import net.minecraft.server.Bootstrap;
 import net.minecraft.server.MinecraftServer.MultiplayerScope;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.metadata.pack.*;
+import net.minecraft.server.permissions.LevelBasedPermissionSet;
+import net.minecraft.server.players.NameAndId;
+import net.minecraft.server.players.ServerOpList;
+import net.minecraft.world.level.storage.WorldData;
 import net.neoforged.neoforge.client.event.ScreenEvent;
 import org.objectweb.asm.*;
 import org.objectweb.asm.tree.*;
@@ -74,6 +80,19 @@ public final class ExecutableProbe {
         set(connection, "serverData", serverData); minecraft.connection = connection;
         RecordingServer server = allocate(RecordingServer.class); server.minecraft = minecraft;
         scope(server, MultiplayerScope.OFF); set(server, "motd", "Fixture host");
+        var host = new NameAndId(new UUID(0, 1), "Host");
+        var guest = new NameAndId(new UUID(0, 2), "Guest");
+        server.setSingleplayerProfile(new com.mojang.authlib.GameProfile(host.id(), host.name()));
+        var playerList = allocate(IntegratedPlayerList.class);
+        set(playerList, "server", server);
+        set(playerList, "playersView", List.of());
+        set(playerList, "ops", new ServerOpList(new File("unused-ops.json"), null));
+        set(server, "playerList", playerList);
+        set(server, "worldData", Proxy.newProxyInstance(WorldData.class.getClassLoader(), new Class<?>[] {WorldData.class},
+                (proxy, method, arguments) -> {
+                    if (method.getName().equals("isAllowCommands")) return server.worldCommands;
+                    throw new AssertionError("Unexpected access to world settings: " + method.getName());
+                }));
         set(minecraft, "singleplayerServer", server); set(minecraft, "isLocalServer", true);
         singleton.set(null, minecraft);
         try {
@@ -103,10 +122,17 @@ public final class ExecutableProbe {
             check(!server.isPublished() && key(cell.world).equals(LAN), "actual Render.Pre returns external unpublished state to LAN");
             check(Arrays.equals(geometry, geometry(cell.world)) && cell.pause.getFocused() == cell.world, "render refresh preserves geometry/focus");
 
+            server.worldCommands = true;
+            check(server.getProfilePermissions(host) == LevelBasedPermissionSet.OWNER
+                    && server.getProfilePermissions(guest) == LevelBasedPermissionSet.ALL,
+                    "before publication only the host can use commands");
             server.succeed = true;
             press(cell.world);
             check(server.attempts == 1 && server.lastScope == MultiplayerScope.LAN && server.lastPort > 0 && server.otherOverloadCalls == 0, "publication invokes only actual native two-argument LAN descriptor");
             check(server.isPublished() && gui.screen() == null && original.get() == 0, "success publishes and closes pause without invoking original WorldOptions action");
+            check(server.getGuestCommandAccess() && server.getProfilePermissions(host) == LevelBasedPermissionSet.OWNER
+                    && server.getProfilePermissions(guest) == LevelBasedPermissionSet.GAMEMASTER,
+                    "native permission resolution lets guests use gameplay commands while retaining host-only privileges");
             check(chat.messages.size() == 1 && chat.messages.getLast().equals(net.minecraft.server.commands.PublishCommand.getSuccessMessage(server.lastPort))
                     && narrator.messages.getLast() == chat.messages.getLast() && minecraft.titles == 1, "native success-message factory reaches chat/narrator/title boundaries");
             if (discovery != null) {
@@ -131,6 +157,7 @@ public final class ExecutableProbe {
             press(cell.world); check(gui.navigations == navigationCount, "stale guest action does not replace Reports");
 
             set(minecraft, "singleplayerServer", server); set(minecraft, "isLocalServer", true); scope(server, MultiplayerScope.OFF);
+            server.setGuestCommandAccess(false);
             Cell resized = cell(nativeCaption, original, 140, 180); current(gui, resized.pause);
             int[] resizedGeometry = geometry(resized.world); PauseActions.onScreenInit(post(resized.pause));
             check(key(resized.world).equals(LAN) && Arrays.equals(resizedGeometry, geometry(resized.world)) && gridWidgets(resized.grid).equals(resized.layoutOrder), "fresh native layout/reinitialization at new geometry preserves its exact cell");
@@ -138,11 +165,13 @@ public final class ExecutableProbe {
             server.succeed = false;
             press(resized.world);
             check(server.attempts == 2 && !server.isPublished() && gui.screen() == null && original.get() == 0, "native publication false closes pause without exposing WorldOptions or changing settings");
+            check(!server.getGuestCommandAccess(), "refused publication does not enable guest commands");
             check(key(chat.messages.getLast()).equals("commands.publish.failed") && narrator.messages.getLast() == chat.messages.getLast(), "native failure feedback reaches chat and narrator");
             current(gui, resized.pause); render(resized.pause);
             check(resized.world.active && key(resized.world).equals(LAN), "failed publication can be retried after reopening");
             server.throwPublication = true; press(resized.world); server.throwPublication = false;
             check(server.attempts == 3 && gui.screen() == null && !server.isPublished() && original.get() == 0, "publication exception also closes pause without world settings");
+            check(!server.getGuestCommandAccess(), "throwing publication does not enable guest commands");
             current(gui, resized.pause); render(resized.pause); chat.failNext = true;
             boolean feedbackFailed = false;
             try { press(resized.world); } catch (IllegalStateException expected) { feedbackFailed = true; }
@@ -171,6 +200,15 @@ public final class ExecutableProbe {
                         && (Integer) discovery.getField("port").get(null) == server.lastPort, "throwing optional helper was reached exactly once with the current publication");
                 discovery.getField("fail").set(null, false);
             }
+            scope(server, MultiplayerScope.OFF);
+            server.worldCommands = false;
+            server.setGuestCommandAccess(true);
+            server.succeed = true;
+            current(gui, resized.pause); render(resized.pause); press(resized.world);
+            check(server.isPublished() && !server.getGuestCommandAccess()
+                    && server.getProfilePermissions(host) == LevelBasedPermissionSet.ALL
+                    && server.getProfilePermissions(guest) == LevelBasedPermissionSet.ALL,
+                    "sharing a commands-disabled world clears stale guest access and grants commands to neither player");
         } finally { singleton.set(null, previous); }
         check(Minecraft.getInstance() == previous, "actual singleton restored");
         var execution = new LinkedHashMap<String, Object>();
@@ -179,6 +217,7 @@ public final class ExecutableProbe {
                 "worldSettingsActionCalls", original.get(), "recordingBoundaries", "publish(scope,int), Gui.setScreen, chat, narration, title and connection getter",
                 "gameMainStarted", false, "rendererStarted", false));
         execution.put("discoveryNotification", helperAbsent ? "missing helper preserves hosting and feedback" : "exact success-only Object API notification; throwing helper preserves hosting and feedback");
+        execution.put("nativeHostAndGuestPermissions", "commands on/off; rejected and throwing publication");
         return execution;
     }
 
@@ -258,7 +297,7 @@ public final class ExecutableProbe {
                     if (instruction instanceof MethodInsnNode call) {
                         if (call.owner.equals("net/minecraft/client/gui/screens/WorldOptionsScreen") || call.desc.contains("WorldOptionsScreen;")
                                 || Set.of("removeWidget", "clearWidgets", "addRenderableWidget", "addWidget", "addRenderableOnly", "removeListener", "addListener").contains(call.name)) forbiddenReference = true;
-                        check(!Set.of("setDefaultGameType", "setGameType", "setDifficulty", "setCommandsAllowed", "setAllowCommands", "applyChanges").contains(call.name), "component must not call a world-settings mutator");
+                        check(!Set.of("setDefaultGameType", "setGameType", "setDifficulty", "setCommandsAllowed", "setAllowCommands", "setWorldAllowCommands", "applyChanges").contains(call.name), "component must not call a world-settings mutator");
                         if (call.name.equals("publishServer")) { publicationCalls++; check(call.desc.equals("(Lnet/minecraft/server/MinecraftServer$MultiplayerScope;I)Z"), "packaged component calls only native two-argument publication"); }
                         if (call.owner.equals(DISCOVERY) && call.name.equals("published")) discoveryCalls++;
                     }
@@ -447,6 +486,7 @@ public final class ExecutableProbe {
     }
     private static final class RecordingServer extends IntegratedServer {
         private RecordingMinecraft minecraft; private boolean succeed, throwPublication; private Screen replacement;
+        private boolean worldCommands;
         private int attempts, lastPort, otherOverloadCalls; private MultiplayerScope lastScope;
         RecordingServer() { super(null, null, null, null, null, null, null, null); }
         @Override public boolean publishServer(MultiplayerScope scope, int port) {

@@ -98,9 +98,12 @@ public final class PauseActions {
             try {
                 try {
                     port = HttpUtil.getAvailablePort();
-                    // The two-argument overload retains the world's existing game
-                    // mode and command access, and invokes the native TCP listener.
                     published = server.publishServer(MultiplayerScope.LAN, port);
+                    if (published) {
+                        // World commands enable host permissions. Guests need the
+                        // separate session flag to get Minecraft's gamemaster permissions.
+                        server.setGuestCommandAccess(server.getWorldData().isAllowCommands());
+                    }
                 } catch (RuntimeException failure) {
                     LOGGER.error("Native LAN publication failed", failure);
                 }

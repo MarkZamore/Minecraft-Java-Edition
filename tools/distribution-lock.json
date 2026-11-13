@@ -55,9 +55,9 @@
       "role": "required-iris-renderer"
     },
     {
-      "path": "mods/lanmc-pause-actions-1.0.1.jar",
-      "sizeBytes": 14405,
-      "sha256": "c77a9ad6fe4506dffd50853d41210c972e0b53437357ac2afa6bad5d74313f6c",
+      "path": "mods/lanmc-pause-actions-1.0.2.jar",
+      "sizeBytes": 14601,
+      "sha256": "93da6099ca5468eb548144803b0a417e7776a4859c357844b1cd925efead358b",
       "modIds": [
         "lanmc_pause_actions"
       ],

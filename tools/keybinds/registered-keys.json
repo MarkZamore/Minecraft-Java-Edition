@@ -5,7 +5,7 @@
   "modSha256": {
     "emi-1.1.24-e7edb3a+26.3+neoforge.jar": "a74ffcc975700740b16169e96ed179c88fc121a41f84345c34ed6e4f513296db",
     "iris-neoforge-1.11.7+mc26.3.jar": "2260506334a17ac566ea30169ab491201208f55c1c7212bb987bc0c7c59a8d93",
-    "lanmc-pause-actions-1.0.1.jar": "c77a9ad6fe4506dffd50853d41210c972e0b53437357ac2afa6bad5d74313f6c",
+    "lanmc-pause-actions-1.0.2.jar": "93da6099ca5468eb548144803b0a417e7776a4859c357844b1cd925efead358b",
     "sodium-neoforge-0.9.3-beta.1+mc26.3.jar": "2d6dc7b223f93ce5c5fcedbddacdeb175c1e65484a5bc115e954465aebc8291f"
   },
   "mappings": [

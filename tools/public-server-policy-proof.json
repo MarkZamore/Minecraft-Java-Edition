@@ -1,12 +1,14 @@
 {
   "repository": "Minecraft-Java-Edition",
-  "revision": "0732f42c15899fff95cc9f7f1d3a8f3b19c87999",
+  "revision": "staging",
   "status": "PASS",
   "policy": "steam-only-automatic-server-list-v1",
-  "reviewedInventorySha256": "c830339d831b7cd94411a832c6dee60ee55cdfbcedc50eefe8fae076c2ba8bd0",
+  "reviewedInventorySha256": "9606903202aeb30fec3d9dd0fbcc5242b99fe470ee16f6b0e2903a392803c306",
   "files": 9,
   "textFilesChecked": 4,
   "personalServerListsModified": false,
-  "checks": "Five common regression tests passed; full reviewed text inventory checked against published SHA; no new gameplay run.",
-  "payloadChanges": []
+  "checks": "Compared exact delivery inventory and reviewed the new packaged callback on the native NeoForge client API; no new public server seeding or multiplayer-list hooks. Checked all staged text files and absence of shipped NBT server seeds.",
+  "payloadChanges": [
+    "Replaced mods/lanmc-pause-actions-1.0.1.jar with 1.0.2 for guest permissions on successful publication."
+  ]
 }

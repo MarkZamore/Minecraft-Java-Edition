@@ -3,7 +3,7 @@
 From the pack source root, with the pack's JDK (currently Java 25):
 
 ```text
-python tools/pause-actions/verify_native.py --jar path/to/lanmc-pause-actions-1.0.1.jar
+python tools/pause-actions/verify_native.py --jar path/to/lanmc-pause-actions-1.0.2.jar
 ```
 
 Use `--report .cache/pause-actions/native-verification.json` for a compact report.
@@ -109,3 +109,7 @@ running client are bypassed with `Unsafe`; network publication, navigation and
 feedback use the explicit boundaries above. It does **not** start a client/server
 main, a renderer or a user world, and does not prove full mod-loader discovery,
 actual screen resize dispatch, rendered appearance, Steam networking or gameplay.
+
+## РџСЂР°РІР° РєРѕРјР°РЅРґ РїСЂРё РїСѓР±Р»РёРєР°С†РёРё
+
+РџРѕСЃР»Рµ РЅР°Р¶Р°С‚РёСЏ РїСЂРѕРІРµСЂСЏСЋС‚СЃСЏ С€С‚Р°С‚РЅС‹Рµ СѓСЂРѕРІРЅРё РїСЂР°РІ С…РѕСЃС‚Р° Рё РіРѕСЃС‚СЏ Р±РµР· OP С‡РµСЂРµР· IntegratedServer Рё PlayerList. РџРѕРґРјРµРЅР° Р·Р°РґР°С‘С‚ С‚РѕР»СЊРєРѕ СЃРѕС…СЂР°РЅС‘РЅРЅС‹Р№ С„Р»Р°Рі WorldData Рё СЂРµР·СѓР»СЊС‚Р°С‚ СЃРµС‚РµРІРѕР№ РїСѓР±Р»РёРєР°С†РёРё. Р’РєР»СЋС‡С‘РЅРЅС‹Рµ РєРѕРјР°РЅРґС‹ РґР°СЋС‚ OWNER Рё GAMEMASTER, РІС‹РєР»СЋС‡РµРЅРЅС‹Рµ РѕСЃС‚Р°РІР»СЏСЋС‚ РѕР±РѕРёС… Р±РµР· РёРіСЂРѕРІС‹С… РєРѕРјР°РЅРґ. РџСЂРѕРІРµСЂСЏСЋС‚СЃСЏ С‚Р°РєР¶Рµ РѕС‚РєР°Р·, РёСЃРєР»СЋС‡РµРЅРёРµ РїСѓР±Р»РёРєР°С†РёРё Рё СЃР±СЂРѕСЃ СЂР°РЅРµРµ РІРєР»СЋС‡С‘РЅРЅРѕРіРѕ РґРѕСЃС‚СѓРїР°.

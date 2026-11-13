@@ -1,0 +1,70 @@
+{
+  "status": "PASS",
+  "minecraft": "26.3",
+  "neoforge": "26.3.0.99",
+  "java": 25,
+  "jarSha256": "93da6099ca5468eb548144803b0a417e7776a4859c357844b1cd925efead358b",
+  "jarSizeBytes": 14601,
+  "nativeProof": {
+    "status": "PASS",
+    "actualMixinVersion": "0.8.7",
+    "engine": "org.spongepowered.asm.mixin.transformer.MixinTransformer",
+    "nativeClassOriginalBytes": 4265,
+    "nativeClassOriginalSha256": "a3c5bf37aac82e360913080768fdf2005506afb9a0124e3466ee0a4d1bf6de7a",
+    "nativeClassTransformedBytes": 5259,
+    "generatedNativeFieldReads": 1,
+    "generatedNativeFieldWrites": 1,
+    "baseline": {
+      "nativeFinalField": true,
+      "originalActionDispatch": true
+    },
+    "execution": {
+      "assertions": 274,
+      "actualProductionPostAndRender": true,
+      "worldSettingsActionCalls": 0,
+      "actualSocialScreenConstructorAndOnClose": true,
+      "actualNativeGridButtonIdentityGeometryFocus": true,
+      "actualNativePublishedState": true,
+      "gameMainStarted": false,
+      "rendererStarted": false,
+      "recordingBoundaries": "publish(scope,int), Gui.setScreen, chat, narration, title and connection getter",
+      "discoveryNotification": "exact success-only Object API notification; throwing helper preserves hosting and feedback",
+      "nativeHostAndGuestPermissions": "commands on/off; rejected and throwing publication"
+    },
+    "fmlEnvironment": "Genuine FMLLoader CLIENT/PROD context constructor plus genuine empty LoadingModList; no discovery or game main",
+    "missingDiscoveryHelperProof": {
+      "actualSocialScreenConstructorAndOnClose": true,
+      "actualNativeGridButtonIdentityGeometryFocus": true,
+      "actualNativePublishedState": true,
+      "gameMainStarted": false,
+      "rendererStarted": false,
+      "recordingBoundaries": "publish(scope,int), Gui.setScreen, chat, narration, title and connection getter",
+      "assertions": 269,
+      "actualProductionPostAndRender": true,
+      "worldSettingsActionCalls": 0,
+      "discoveryNotification": "missing helper preserves hosting and feedback",
+      "nativeHostAndGuestPermissions": "commands on/off; rejected and throwing publication"
+    },
+    "requiredAccessorNegativeCases": [
+      {
+        "case": "missing-field",
+        "failureType": "org.spongepowered.asm.mixin.transformer.throwables.MixinTransformerError",
+        "status": "REJECTED",
+        "engine": "org.spongepowered.asm.mixin.transformer.MixinTransformer"
+      },
+      {
+        "engine": "org.spongepowered.asm.mixin.transformer.MixinTransformer",
+        "status": "REJECTED",
+        "failureType": "org.spongepowered.asm.mixin.transformer.throwables.MixinTransformerError",
+        "case": "wrong-field-type"
+      }
+    ]
+  },
+  "nativeRuntimeInput": {
+    "clientJarName": "minecraft-client-patched-26.3.0.99.jar",
+    "clientJarSha256": "e5190c0484d5ddcc01b8db75ebc37bc52e718147a1aa8bcef83b69e62f2f7838",
+    "buttonClassSha256": "a3c5bf37aac82e360913080768fdf2005506afb9a0124e3466ee0a4d1bf6de7a",
+    "buttonClassSizeBytes": 4265
+  },
+  "scope": "Actual packaged accessor/config and Sponge Mixin engine; actual native button, events and published-state getter. Explicit network/UI-feedback boundaries; no game main, renderer, event bus discovery or user world."
+}

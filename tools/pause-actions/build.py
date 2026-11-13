@@ -27,7 +27,7 @@ import zipfile
 HERE = Path(__file__).resolve().parent
 PACK_ROOT = HERE.parents[1]
 MOD_ID = "lanmc_pause_actions"
-MOD_VERSION = "1.0.1"
+MOD_VERSION = "1.0.2"
 JAR_NAME = f"lanmc-pause-actions-{MOD_VERSION}.jar"
 MANIFEST_URL = "https://launchermeta.mojang.com/mc/game/version_manifest_v2.json"
 ALLOWED_HOSTS = {

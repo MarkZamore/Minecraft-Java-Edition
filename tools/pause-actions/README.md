@@ -35,7 +35,7 @@
 ```powershell
 $env:JAVA_HOME = 'C:\Tools\jdk-25.0.2'
 python -B tools/pause-actions/build.py --output .cache/pause-actions/rebuilt.jar
-python -B tools/pause-actions/verify_native.py --jar mods/lanmc-pause-actions-1.0.1.jar
+python -B tools/pause-actions/verify_native.py --jar mods/lanmc-pause-actions-1.0.2.jar
 python -B -m unittest discover -s tools -p test_pause_actions.py
 ```
 
@@ -62,7 +62,7 @@ Safety: добавлен только вызов существующего из
 Дополнительная изолированная проверка установленного helper:
 
 ```powershell
-python -B tools/pause-actions/verify_discovery_bridge.py --agent <actual-portable-identity-adapter.jar> --jar mods/lanmc-pause-actions-1.0.1.jar --cache-dir <private-native-cache> --report .cache/discovery-bridge.json
+python -B tools/pause-actions/verify_discovery_bridge.py --agent <actual-portable-identity-adapter.jar> --jar mods/lanmc-pause-actions-1.0.2.jar --cache-dir <private-native-cache> --report .cache/discovery-bridge.json
 ```
 
 Она использует байты packaged моста и реального bootstrap helper с явно обозначенными in-memory границами игровых/Steam-служб. Это проверка handoff и metadata, не соединение двух Steam-аккаунтов, запуск renderer или личного мира. Последние проведённые проверки и их границы фиксируются в `verification.json`.

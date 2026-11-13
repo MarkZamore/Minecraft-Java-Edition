@@ -9,7 +9,7 @@
 | EMI | 1.1.24-e7edb3a+26.3+neoforge, авторский build+62, Alpha |
 | Iris | 1.11.7+mc26.3, NeoForge, Release |
 | Sodium | 0.9.3-beta.1+mc26.3, NeoForge, Beta; обязательная зависимость Iris |
-| Pause Menu Actions | 1.0.1, встроенное клиентское меню LAN и жалоб |
+| Pause Menu Actions | 1.0.2, встроенное клиентское меню LAN и жалоб |
 | Загружаемых mod ID в репозитории | 4 |
 
 EMI взят из того же [неофициального порта link-fgfgui](https://www.curseforge.com/minecraft/mc-mods/emi-unofficial-port-unstable), что использовался в прежней сборке 26.2. Обновлён именно этот проект: [файл 9242955](https://www.curseforge.com/minecraft/mc-mods/emi-unofficial-port-unstable/files/9242955), [исходный коммит e7edb3a](https://github.com/link-fgfgui/emi/commit/e7edb3aa4d7619eaaa03e01084fe01bb3db567e7). Автор пометил оба использованных порта как Alpha; это не заявление о стабильном канале мода.
