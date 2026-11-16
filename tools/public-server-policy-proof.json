@@ -1,14 +1,14 @@
 {
   "repository": "Minecraft-Java-Edition",
-  "revision": "staging",
+  "revision": "qa-multiplayer-warning",
   "status": "PASS",
   "policy": "steam-only-automatic-server-list-v1",
-  "reviewedInventorySha256": "9606903202aeb30fec3d9dd0fbcc5242b99fe470ee16f6b0e2903a392803c306",
-  "files": 9,
-  "textFilesChecked": 4,
+  "reviewedInventorySha256": "d9feb461396c211d425d4ca5a172c962a44f104ab7d0b0db943dfdd91d72f2f6",
+  "files": 10,
+  "textFilesChecked": 5,
   "personalServerListsModified": false,
-  "checks": "Compared exact delivery inventory and reviewed the new packaged callback on the native NeoForge client API; no new public server seeding or multiplayer-list hooks. Checked all staged text files and absence of shipped NBT server seeds.",
+  "checks": "Compared the exact previous inventory; launcher/options-default.txt adds only the native skipMultiplayerWarning flag. Reviewed staged text files for server seeds and menu commands.",
   "payloadChanges": [
-    "Replaced mods/lanmc-pause-actions-1.0.1.jar with 1.0.2 for guest permissions on successful publication."
+    "launcher/options-default.txt"
   ]
 }
