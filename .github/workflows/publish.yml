@@ -59,6 +59,7 @@ jobs:
           python -B -m unittest discover -s tools -p test_manifest_upgrade.py
           python -B -m unittest discover -s tools -p test_pause_actions.py
           python -B -m unittest discover -s tools -p test_logging_policy.py
+          python -B -m unittest discover -s tools -p test_multiplayer_warning_policy.py
           python tools/generate_manifest.py --pack . --out dist --verify-only
 
       - name: Require reviewed Steam-only automatic server lists

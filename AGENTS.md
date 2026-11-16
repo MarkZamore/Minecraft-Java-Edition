@@ -18,7 +18,7 @@
 
 ## Автоматический список серверов
 
-- Сохранять `!skipMultiplayerWarning:true` в `launcher/options-default.txt`. Это штатная настройка первого экрана «Сетевой игры» для чистых и уже созданных профилей. Не поставлять полный `options.txt` и не менять ограничения аккаунта или Steam-доступа. При обновлении игры проверять ключ и оба вида профиля.
+- При переносе авторской версии сохранять `tools/multiplayer_warning_policy.py` и после импорта выполнять `python -B tools/multiplayer_warning_policy.py prepare --pack .`. Команда восстанавливает `!skipMultiplayerWarning:true` в `launcher/options-default.txt` и сохраняет остальные параметры. Генерация и `--verify-only` проверяют исходный файл, а `--verify-only` также проверяет сам архив. При смене версии Minecraft сначала сверять штатный ключ с целевой игрой и при необходимости обновлять правило. Полный `options.txt` не поставлять.
 
 - Лаунчер предназначен для миров через Steam. Сохранять отключёнными авторские публичные server seeds и кнопки прямого подключения; личные servers.dat игрока не читать и не очищать.
 - Обязательный read-only gate перед загрузкой assets: `python tools/public_server_policy.py --pack . --manifest dist/pack-manifest.json`. Он закрепляет полный проверенный состав из `tools/public-server-policy.json`, проверяет текстовые входы и отсутствие поставляемых NBT-списков.

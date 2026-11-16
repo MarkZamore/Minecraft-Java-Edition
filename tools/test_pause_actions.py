@@ -9,6 +9,7 @@ import unittest
 import zipfile
 
 import generate_manifest
+import multiplayer_warning_policy
 import network_logging_policy
 
 
@@ -40,6 +41,7 @@ class PauseActionsPublicationTests(unittest.TestCase):
         logging.parent.mkdir()
         logging.write_bytes((Path(__file__).resolve().parent.parent / "config/log4j2.xml").read_bytes())
         network_logging_policy.prepare(self.pack)
+        multiplayer_warning_policy.prepare(self.pack)
 
     def write_helper(self, *, mod_id=None, policy=None, project=None, version=None,
                      embedded=True, mixins=None, registered=True, missing_class=None,

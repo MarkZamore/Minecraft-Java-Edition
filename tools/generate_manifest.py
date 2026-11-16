@@ -28,6 +28,7 @@ Python 3.12, standard library only.
 from __future__ import annotations
 
 from pack_library import read_mods, read_pack_mods, stage_library, verify_library
+import multiplayer_warning_policy
 import network_logging_policy
 
 import argparse
@@ -402,6 +403,7 @@ class Staging:
 
 def generate(pack: Path, out: Path, revision: str) -> None:
     network_logging_policy.verify(pack)
+    multiplayer_warning_policy.verify(pack)
     portable = load_portable_pack(pack)
     client_jar = portable["clientJar"].replace("\\", "/")
     if client_jar:
@@ -532,7 +534,14 @@ def verify_only(out: Path) -> None:
     assets = manifest.get("assets") or []
     if not assets:
         fail("manifest contains no assets")
-    sample = random.sample(assets, min(VERIFY_SAMPLE, len(assets)))
+    warning_path = multiplayer_warning_policy.RELATIVE_PATH
+    option_rows = [row for row in manifest["files"] if row["path"] == warning_path]
+    warning_assets = [asset for asset in assets if warning_path in asset["covers"]]
+    if len(option_rows) != 1 or len(warning_assets) != 1 or warning_assets[0]["kind"] != "zipRoot":
+        fail(f"verify: expected one staged record and one archive for {warning_path}")
+    warning_asset = warning_assets[0]
+    others = [asset for asset in assets if asset is not warning_asset]
+    sample = [warning_asset, *random.sample(others, min(VERIFY_SAMPLE - 1, len(others)))]
     for asset in sample:
         staged = out / "assets" / asset["name"]
         if not staged.is_file():
@@ -543,6 +552,15 @@ def verify_only(out: Path) -> None:
             fail(f"verify: hash/size mismatch for {asset['name']}: "
                  f"expected {asset['sha256']}/{asset['sizeBytes']}, "
                  f"got {actual_sha}/{actual_size}")
+        if asset is warning_asset:
+            with zipfile.ZipFile(staged) as archive:
+                if archive.namelist().count(warning_path) != 1:
+                    fail(f"verify: expected one {warning_path} entry in {asset['name']}")
+                data = archive.read(warning_path)
+            row = option_rows[0]
+            if hashlib.sha256(data).hexdigest() != row["sha256"] or len(data) != row["sizeBytes"]:
+                fail(f"verify: staged {warning_path} differs from its manifest record")
+            multiplayer_warning_policy.verify_contents(data)
         print(f"verify ok: {asset['name']}")
     print(f"verified {len(sample)} of {len(assets)} staged assets")
 
@@ -571,6 +589,7 @@ def main() -> None:
 
     if args.verify_only:
         network_logging_policy.verify(pack)
+        multiplayer_warning_policy.verify(pack)
         verify_only(out)
         return
 

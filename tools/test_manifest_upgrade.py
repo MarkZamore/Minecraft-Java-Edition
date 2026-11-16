@@ -8,6 +8,7 @@ import zipfile
 import io
 
 import generate_manifest
+import multiplayer_warning_policy
 import network_logging_policy
 
 
@@ -24,6 +25,7 @@ class UpgradeManifestTests(unittest.TestCase):
         logging.parent.mkdir()
         logging.write_bytes((pathlib.Path(__file__).resolve().parent.parent / "config/log4j2.xml").read_bytes())
         network_logging_policy.prepare(self.pack)
+        multiplayer_warning_policy.prepare(self.pack)
         self.jar = self.pack / "mods/new.jar"
         with zipfile.ZipFile(self.jar, "w") as archive:
             archive.writestr("META-INF/neoforge.mods.toml", '[[mods]]\nmodId="emi"\ndisplayName="EMI"\nversion="new"\n')

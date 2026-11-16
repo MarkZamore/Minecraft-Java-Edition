@@ -52,6 +52,17 @@ Push в `main` запускает `.github/workflows/publish.yml`. Workflow пр
 
 Точные источники, обязательная зависимость и границы проверки: [tools/SHADERS.md](tools/SHADERS.md).
 
+## Перенос предупреждения о сторонних серверах
+
+После импорта авторских файлов в независимую копию выполните:
+
+```text
+python -B tools/multiplayer_warning_policy.py prepare --pack .
+python -B tools/multiplayer_warning_policy.py verify --pack .
+```
+
+Сценарий восстанавливает штатное `!skipMultiplayerWarning:true` для Minecraft 26.3, даже если автор удалил файл `launcher/options-default.txt` или поменял значение. Все остальные строки сохраняются. Генератор и `--verify-only` отклоняют отсутствующий, сброшенный или дублированный параметр. Режим `--verify-only` всегда проверяет и упакованный файл. При смене Minecraft сверьте штатный ключ целевой версии перед выпуском.
+
 ## Ограниченная диагностика сетевых исключений
 
 `config/log4j2.xml` сохраняет полные стеки четырёх пойманных сетевых исключений
