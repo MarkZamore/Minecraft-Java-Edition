@@ -18,7 +18,7 @@ def render() -> str:
     if LAYOUT.keys() - known:
         raise ValueError(f"Unknown overrides: {LAYOUT.keys() - known}")
     lines = [f"# Minecraft {registry['minecraftVersion']} controls preset: standard vanilla controls.",
-             "# Complete vanilla and Iris OpenGL mappings; EMI owns config/emi.css binds.",
+             "# Complete vanilla and Iris OpenGL mappings.",
              "# Vanilla spectator/debug overlaps are deliberate; see tools/keybinds/design.md.",
              "# Generated with python tools/keybinds/build_preset.py."]
     category = None

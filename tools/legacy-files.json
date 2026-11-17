@@ -20,6 +20,11 @@
       "path": "mods/lanmc-pause-actions-1.0.1.jar",
       "sizeBytes": 14405,
       "sha256": "c77a9ad6fe4506dffd50853d41210c972e0b53437357ac2afa6bad5d74313f6c"
+    },
+    {
+      "path": "mods/emi-1.1.24-e7edb3a+26.3+neoforge.jar",
+      "sizeBytes": 1111167,
+      "sha256": "a74ffcc975700740b16169e96ed179c88fc121a41f84345c34ed6e4f513296db"
     }
   ]
 }

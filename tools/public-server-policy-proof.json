@@ -1,15 +1,15 @@
 {
+  "repository": "Minecraft-Java-Edition",
+  "revision": "qa-without-emi",
   "status": "PASS",
   "policy": "steam-only-automatic-server-list-v1",
-  "reviewedInventorySha256": "7e7291bc7dcb29654b4e4f8bbd40d35a7eed091bf4c334c7d72dc0677d8b2c0f",
-  "files": 14,
+  "reviewedInventorySha256": "af28041a5df8b6edd079424fb17ca4e8d57de02207e78ae1db79f64670f40bb0",
+  "files": 13,
   "textFilesChecked": 6,
   "personalServerListsModified": false,
-  "repository": "Minecraft-Java-Edition",
-  "revision": "qa-matching-shaders",
-  "checks": "Compared the previous inventory exactly. Both shader ZIPs match the Better Vanilla source hashes and were reviewed for automatic server-list seeds and menu commands.",
+  "checks": "Compared against public ac4c6e3. The remaining mods declare no EMI dependency. All shipped text checked for automatic public server seeds.",
   "payloadChanges": [
-    "shaderpacks/Bliss_v2.1.2_(Chocapic13_Shaders_edit).zip",
-    "shaderpacks/ComplementaryReimagined_r5.9.3.zip"
+    "Removed mods/emi-1.1.24-e7edb3a+26.3+neoforge.jar; exact entry moved to legacyFiles.",
+    "Removed the obsolete EMI comment from launcher/controls-preset.txt; key mappings unchanged."
   ]
 }

@@ -8,7 +8,7 @@ import zipfile
 from pack_library import build_library, read_mods, stage_library, verify_library
 
 
-CURRENT_MODS = {"emi": "EMI", "iris": "Iris", "sodium": "Sodium",
+CURRENT_MODS = {"iris": "Iris", "sodium": "Sodium",
                 "lanmc_pause_actions": "Pause Menu Actions"}
 
 

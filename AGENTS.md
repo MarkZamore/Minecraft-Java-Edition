@@ -1,5 +1,7 @@
 # Подготовка исходников сборки
 
+- EMI удалён из активной поставки. При переносе авторских файлов сохранять обе записи EMI в `tools/legacy-files.json` и оставлять `mods`, active lock и библиотеку без EMI.
+
 ## Сохранение диагностики при обновлениях автора
 
 - После переноса новых авторских файлов сохранять pack-owned слой: `config/log4j2.xml`, `launcher/jvm-args.txt`, `launcher/pack-owned.txt`, `tools/network_logging_policy.py`, `tools/network-logging-policy.json`. Не заменять весь репозиторий одним авторским экспортом.
