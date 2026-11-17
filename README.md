@@ -48,7 +48,11 @@ Push в `main` запускает `.github/workflows/publish.yml`. Workflow пр
 
 ## Собственные шейдеры
 
-В поставке есть [MakeUp — Ultra Fast 9.6](https://modrinth.com/shader/makeup-ultra-fast-shaders/version/t4YRxQug) от Javier G. C. (XavierFST) и участников проекта. ZIP находится в `shaderpacks`. Его можно выбрать вручную в меню Iris. Туда же игрок может добавить свои ZIP через кнопку открытия папки. Iris этой версии работает с шейдерами через OpenGL. При Vulkan он показывает предупреждение и предлагает сменить бэкенд.
+В папке `shaderpacks` поставляются три оригинальных набора. Игрок выбирает набор в меню Iris и может добавить туда свои ZIP. Iris этой версии работает с шейдерами через OpenGL. При Vulkan он показывает предупреждение и предлагает сменить бэкенд.
+
+- [Bliss 2.1.2](https://modrinth.com/shader/bliss-shader/version/kC2Y8q1P) от X0nk на основе шейдеров Chocapic13.
+- [Complementary Reimagined r5.9.3](https://modrinth.com/shader/complementary-reimagined/version/Bqen1mJX) от Complementary Development.
+- [MakeUp — Ultra Fast 9.6](https://modrinth.com/shader/makeup-ultra-fast-shaders/version/t4YRxQug) от Javier G. C. (XavierFST) и участников проекта.
 
 Точные источники, обязательная зависимость и границы проверки: [tools/SHADERS.md](tools/SHADERS.md).
 

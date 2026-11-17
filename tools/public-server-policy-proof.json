@@ -1,15 +1,15 @@
 {
   "status": "PASS",
   "policy": "steam-only-automatic-server-list-v1",
-  "reviewedInventorySha256": "81686d04157e3addfe922eda2bdc355a42c69be1bc3a3561b95a5da9f448c751",
-  "files": 12,
+  "reviewedInventorySha256": "7e7291bc7dcb29654b4e4f8bbd40d35a7eed091bf4c334c7d72dc0677d8b2c0f",
+  "files": 14,
   "textFilesChecked": 6,
   "personalServerListsModified": false,
   "repository": "Minecraft-Java-Edition",
-  "revision": "qa-makeup-9-6",
-  "checks": "Previous reviewed delivery matched exactly after removing the two additions. The included shader archive matches the official author release and its corresponding shader sources. Reviewed archive paths and textual inputs for automatic server-list seeds and menu commands.",
+  "revision": "qa-matching-shaders",
+  "checks": "Compared the previous inventory exactly. Both shader ZIPs match the Better Vanilla source hashes and were reviewed for automatic server-list seeds and menu commands.",
   "payloadChanges": [
-    "shaderpacks/MakeUp-UltraFast-9.6.NOTICE.txt",
-    "shaderpacks/MakeUp-UltraFast-9.6.zip"
+    "shaderpacks/Bliss_v2.1.2_(Chocapic13_Shaders_edit).zip",
+    "shaderpacks/ComplementaryReimagined_r5.9.3.zip"
   ]
 }
