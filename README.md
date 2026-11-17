@@ -48,7 +48,7 @@ Push в `main` запускает `.github/workflows/publish.yml`. Workflow пр
 
 ## Собственные шейдеры
 
-В поставку добавлены только [Iris](https://www.curseforge.com/minecraft/mc-mods/irisshaders) и требуемый им [Sodium](https://www.curseforge.com/minecraft/mc-mods/sodium). Готовых shaderpack ZIP, выбранного по умолчанию набора и принудительных ограничений дальности нет. Личный набор можно добавить в папку `shaderpacks` своего игрового экземпляра через кнопку открытия папки в меню Iris, затем выбрать его в списке. Iris этой версии поддерживает шейдеры через OpenGL; при Vulkan показывает предупреждение и предлагает использовать OpenGL. Бэкенд и личные графические настройки поставка не переписывает.
+В поставке есть [MakeUp — Ultra Fast 9.6](https://modrinth.com/shader/makeup-ultra-fast-shaders/version/t4YRxQug) от Javier G. C. (XavierFST) и участников проекта. ZIP находится в `shaderpacks`. Его можно выбрать вручную в меню Iris. Туда же игрок может добавить свои ZIP через кнопку открытия папки. Iris этой версии работает с шейдерами через OpenGL. При Vulkan он показывает предупреждение и предлагает сменить бэкенд.
 
 Точные источники, обязательная зависимость и границы проверки: [tools/SHADERS.md](tools/SHADERS.md).
 

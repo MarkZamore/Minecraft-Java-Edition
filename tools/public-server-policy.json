@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "policy": "steam-only-automatic-server-list-v1",
-  "reviewedInventorySha256": "d9feb461396c211d425d4ca5a172c962a44f104ab7d0b0db943dfdd91d72f2f6",
-  "reviewedManifestRevision": "qa-multiplayer-warning",
-  "reviewedManifestSha256": "1e60a289ca6935b3908298f85bb8c70a014f88c9eba9d24f4c9d64d99a556684",
+  "reviewedInventorySha256": "81686d04157e3addfe922eda2bdc355a42c69be1bc3a3561b95a5da9f448c751",
+  "reviewedManifestRevision": "qa-makeup-9-6",
+  "reviewedManifestSha256": "aa641cd744d0cfb4bc2042c0c5f58241ea9e358bc0b8b7bc716a973097e5b03c",
   "scope": "Exact current delivery, no shipped NBT seeds, reviewed text menus and automatic-list selectors. New binary/config/script/resource input requires explicit re-audit before publication.",
   "personalServerLists": "Never read or rewritten; manually saved addresses are preserved.",
   "autoRepin": false,

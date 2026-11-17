@@ -1,14 +1,15 @@
 {
-  "repository": "Minecraft-Java-Edition",
-  "revision": "qa-multiplayer-warning",
   "status": "PASS",
   "policy": "steam-only-automatic-server-list-v1",
-  "reviewedInventorySha256": "d9feb461396c211d425d4ca5a172c962a44f104ab7d0b0db943dfdd91d72f2f6",
-  "files": 10,
-  "textFilesChecked": 5,
+  "reviewedInventorySha256": "81686d04157e3addfe922eda2bdc355a42c69be1bc3a3561b95a5da9f448c751",
+  "files": 12,
+  "textFilesChecked": 6,
   "personalServerListsModified": false,
-  "checks": "Compared the exact previous inventory; launcher/options-default.txt adds only the native skipMultiplayerWarning flag. Reviewed staged text files for server seeds and menu commands.",
+  "repository": "Minecraft-Java-Edition",
+  "revision": "qa-makeup-9-6",
+  "checks": "Previous reviewed delivery matched exactly after removing the two additions. The included shader archive matches the official author release and its corresponding shader sources. Reviewed archive paths and textual inputs for automatic server-list seeds and menu commands.",
   "payloadChanges": [
-    "launcher/options-default.txt"
+    "shaderpacks/MakeUp-UltraFast-9.6.NOTICE.txt",
+    "shaderpacks/MakeUp-UltraFast-9.6.zip"
   ]
 }
