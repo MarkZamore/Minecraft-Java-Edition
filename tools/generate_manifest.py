@@ -572,6 +572,10 @@ def count_loaded_mods(pack: pathlib.Path, shipped: list[str]) -> int:
 
 
 def main() -> None:
+    import runpy
+    from pathlib import Path as PolicyPath
+    policy_root = PolicyPath(__file__).resolve().parents[1]
+    runpy.run_path(str(policy_root / 'tools/experimental-warnings/policy.py'))['verify'](policy_root)
     parser = argparse.ArgumentParser(
         description="Generate (or verify) the LL8 pack release manifest and assets.")
     parser.add_argument("--pack", required=True, help="pack root directory")

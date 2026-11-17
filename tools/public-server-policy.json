@@ -1,11 +1,12 @@
 {
   "schemaVersion": 1,
   "policy": "steam-only-automatic-server-list-v1",
-  "reviewedInventorySha256": "af28041a5df8b6edd079424fb17ca4e8d57de02207e78ae1db79f64670f40bb0",
+  "reviewedInventorySha256": "b2cb4ee94065e1855357c6b19e0799d58a173e4b906b49f328286c41cfd62156",
   "reviewedManifestRevision": "qa-without-emi",
   "reviewedManifestSha256": "c9959fd4386f2db775419b8a04de178cefcc2eb07aae2c30c19288e1b24851c1",
   "scope": "Exact current delivery, no shipped NBT seeds, reviewed text menus and automatic-list selectors. New binary/config/script/resource input requires explicit re-audit before publication.",
   "personalServerLists": "Never read or rewritten; manually saved addresses are preserved.",
   "autoRepin": false,
-  "checkerSource": "https://github.com/MarkZamore/LANMinecraft/blob/940a5629a231eb608bad3b0772df0a5c8623966f/tools/PackData/ServerPolicy/public_server_policy.py"
+  "checkerSource": "https://github.com/MarkZamore/LANMinecraft/blob/940a5629a231eb608bad3b0772df0a5c8623966f/tools/PackData/ServerPolicy/public_server_policy.py",
+  "reviewUpdateReason": "Reviewed only the experimental confirmation agent and its JVM/ownership selector. The agent contains no server-list seeding or menu/network code. Every other delivered file hash is identical."
 }
